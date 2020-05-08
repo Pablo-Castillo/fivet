@@ -68,8 +68,51 @@ module model {
         string email;
     }
 
+    /**
+    *Clase Ficha
+    */
+    class Ficha{
 
+        /**
+         *Numero de ficha
+        */
+        int nFicha;
 
+        /**
+        *Nombre Paciente: Leonidas
+        */
+        string nombPaciente;
+
+        /**
+        *Especie: Perro/gato/etc
+        */
+        string especie;
+
+        /**
+        *Fecha de Nacimiento: 15/04/2017
+        /*
+        string nacimiento;
+
+        /**
+        *Raza: Labrador
+        */
+        string raza;
+
+        /**
+        *Sexo: Masculino/Femenino
+        */
+        string sexo;
+
+        /**
+        *Color: Negro
+        */
+        string color;
+
+        /**
+        *Tipo:
+        */
+        string tipo;
+    }
 
     /**
      * The base system.
