@@ -49,7 +49,7 @@ module model {
 
         /**
         *Direccion: unadireccion #7649
-        /*
+        */
         string direccion;
 
         /**
@@ -90,7 +90,7 @@ module model {
 
         /**
         *Fecha de Nacimiento: dia/mes/año
-        /*
+        */
         string nacimiento;
 
         /**
@@ -136,7 +136,7 @@ module model {
 
         /**
         *Peso: 30 Kg
-        /*
+        */
         int peso;
 
         /**
@@ -155,6 +155,22 @@ module model {
         string veterinario;
 
     }
+
+    /**
+    *Clase Examen
+    */
+    class Examen{
+        /**
+        *Nombre del Examen: Radiografia
+        */
+        string nomExamen;
+
+        /**
+        *Fecha del examen: dia/mes/año
+        */
+        string feExamen;
+    }
+
 
     /**
      * The base system.
