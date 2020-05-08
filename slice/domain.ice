@@ -26,6 +26,51 @@
 ["java:package:cl.ucn.disc.pdis.fivet.zeroice"]
 module model {
 
+
+    /**
+    *Clase Persona
+    */
+    class Persona{
+
+        /**
+        *PK
+        */
+        int id;
+
+        /**
+        *Nombre: Pablo Castillo Rojas
+        */
+        string nombre;
+
+        /**
+        *Rut: 182335622
+        */
+        string rut;
+
+        /**
+        *Direccion: unadireccion #7649
+        /*
+        string direccion;
+
+        /**
+        *Telefono Fijo: +56 55 2785738
+        */
+        long telefonoFijo;
+
+        /**
+        *Celular: +56948729563
+        */
+        long celular;
+
+        /**
+        *Email: unemail@email.com
+        */
+        string email;
+    }
+
+
+
+
     /**
      * The base system.
      */
