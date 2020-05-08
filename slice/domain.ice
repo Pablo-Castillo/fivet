@@ -171,6 +171,16 @@ module model {
         string feExamen;
     }
 
+    /**
+    *Clase Foto
+    */
+    class Foto{
+        /**
+        *Foto: URL de la foto
+        */
+        string foto;
+    }
+
 
     /**
      * The base system.
