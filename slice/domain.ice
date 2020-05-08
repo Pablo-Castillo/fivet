@@ -74,7 +74,7 @@ module model {
     class Ficha{
 
         /**
-         *Numero de ficha
+        *Numero de ficha
         */
         int nFicha;
 
@@ -89,7 +89,7 @@ module model {
         string especie;
 
         /**
-        *Fecha de Nacimiento: 15/04/2017
+        *Fecha de Nacimiento: dia/mes/año
         /*
         string nacimiento;
 
@@ -112,6 +112,48 @@ module model {
         *Tipo:
         */
         string tipo;
+    }
+
+    /**
+    *Clase Control
+    */
+    class Control{
+
+        /**
+        *Fecha: dia/mes/año
+        */
+        string fecha;
+
+        /**
+        *Proximo Control: dia/mes/año
+        */
+        string proxControl;
+
+        /**
+        *Temperatura: 36°
+        */
+        int temperatura;
+
+        /**
+        *Peso: 30 Kg
+        /*
+        int peso;
+
+        /**
+        *Altura: 60 cm
+        */
+        int altura;
+
+        /**
+        *Diagnostico: Problemas digestivos
+        */
+        string diagnostico;
+
+        /**
+        *Veterinario: Carlos Vidal Pinto
+        */
+        string veterinario;
+
     }
 
     /**
