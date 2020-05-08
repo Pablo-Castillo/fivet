@@ -5,7 +5,7 @@
 
 ## Description
 
-- Este es un proyecto de ejemplo para comenzar a entender el curso.
+- Este es un proyecto de ejemplo para comenzar a entender y programar en el curso.
 
 ## Developers
 
