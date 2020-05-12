@@ -1,7 +1,7 @@
 /*
  * MIT License
  *
- * Copyright (c) 2020 Diego Urrutia-Astorga <durrutia@ucn.cl>.
+ * Copyright (c) 2020 Pablo-Castillo <pablo.castillo01@alumnos.ucn.cl>.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -69,9 +69,30 @@ module model {
     }
 
     /**
+    *Tipo de paciente
+    */
+    enum tipoPaciente {
+        INTERNO,
+        EXTERNO
+    }
+
+    /**
+    *Sexo de paciente
+    */
+    enum Sexo {
+        MACHO,
+        HEMBRA
+    }
+
+    /**
     *Clase Ficha
     */
     class Ficha{
+
+        /**
+        *PK
+        */
+        int id;
 
         /**
         *Numero de ficha
@@ -99,7 +120,7 @@ module model {
         string raza;
 
         /**
-        *Sexo: Masculino/Femenino
+        *Sexo: Macho/Hembra
         */
         string sexo;
 
@@ -109,15 +130,19 @@ module model {
         string color;
 
         /**
-        *Tipo:
+        *Tipo: Interno/Externo
         */
-        string tipo;
+        string tipoPaciente;
     }
 
     /**
     *Clase Control
     */
     class Control{
+        /**
+        *PK
+        */
+        int id;
 
         /**
         *Fecha: dia/mes/año
@@ -161,6 +186,11 @@ module model {
     */
     class Examen{
         /**
+        *PK
+        */
+        int id;
+
+        /**
         *Nombre del Examen: Radiografia
         */
         string nomExamen;
@@ -179,6 +209,29 @@ module model {
         *Foto: URL de la foto
         */
         string foto;
+    }
+
+    /**
+    *Contratos
+    */
+
+    interface Contratos {
+        /**
+        * Dado un numero de ficha, retorna una ficha
+        * @param numero de la ficha
+        * @return Ficha
+        */
+        Ficha obtenerFicha(int numero);
+        /**
+        * Se ingresa un dueño al sistema
+        * @param duenio
+        */
+        Persona ingresarDuenio(Persona duenio);
+        /**
+        * Se agrega un control al sistema
+        * @param control
+        */
+        Control ingresarControl(Control control);
     }
 
 
