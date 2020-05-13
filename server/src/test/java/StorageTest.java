@@ -21,10 +21,14 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+
+import cl.ucn.disc.pdis.fivet.dao.TestPersona;
 import com.j256.ormlite.dao.Dao;
 import com.j256.ormlite.dao.DaoManager;
 import com.j256.ormlite.jdbc.JdbcConnectionSource;
+import com.j256.ormlite.support.ConnectionSource;
 import com.j256.ormlite.table.TableUtils;
+import jdk.javadoc.internal.doclets.toolkit.builders.AnnotationTypeOptionalMemberBuilder;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
@@ -46,5 +50,52 @@ public class StorageTest {
     */
     private static final Logger log = LoggerFactory.getLogger(StorageTest.class);
 
+    /**
+     * Testing the ORMLite + H2 (database).
+     */
+    @Test
+    public void TestDatabase() throws SQLException {
+
+        // The database to use (in RAM memory)
+        String databaseUrl = "jdbc:h2:mem:fivet_db";
+
+        // Connection source: autoclose with the try/catch
+        try (ConnectionSource connectionSource = new JdbcConnectionSource(databaseUrl)) {
+
+            // Create the table from the TestPersona annotations
+            TableUtils.createTableIfNotExists(connectionSource, TestPersona.class);
+
+            // The dao of Persona
+            Dao<TestPersona, Long> daoPersona = DaoManager.createDao(connectionSource, TestPersona.class);
+
+            // New Persona
+            TestPersona persona = new TestPersona("Andrea", "Contreras", "18124996k");
+
+            // Insert TestPersona into the database
+            int tuples = daoPersona.create(persona);
+            log.debug("Id: {}", persona.getId());
+            //
+            Assertions.assertEquals(1, tuples, "Save tuples != 1");
+
+            // Get from db
+            TestPersona personaDb = daoPersona.queryForId(persona.getId());
+
+            Assertions.assertEquals(persona.getNombre(), personaDb.getNombre(), "Nombre not equals!");
+            Assertions.assertEquals(persona.getApellido(), personaDb.getApellido(), "Apellido not equals!");
+            Assertions.assertEquals(persona.getRut(), personaDb.getRut(), "Rut not equals!");
+
+            // Search by rut: SELECT * FROM 'persona' WHERE 'rut' = '18124996k'
+            List<TestPersona> personaList = daoPersona.queryForEq("rut","18124996k");
+            Assertions.assertEquals(1,personaList.size(), "More than one person?!");
+
+            // Not found by rut
+            Assertions.assertEquals(0,daoPersona.queryForEq("rut","19").size(), "Found something !?");
+
+        } catch (IOException e) {
+            log.error("Error", e);
+        }
+
+
+    }
 
 }

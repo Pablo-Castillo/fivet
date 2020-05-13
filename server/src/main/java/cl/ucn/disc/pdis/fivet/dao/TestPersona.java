@@ -1,3 +1,4 @@
+package cl.ucn.disc.pdis.fivet.dao;
 /*
  * MIT License
  *
@@ -21,7 +22,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-import cl.ucn.disc.pdis.fivet.zeroice.model.*;
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
 
@@ -61,15 +61,15 @@ public final class TestPersona {
     /**
      * Empty constructor; Default visibility + empty body.
      */
-    TestPersona() {
+    public TestPersona() {
         // nothing here.
     }
 
-    TestPersona(String nombre, String apellido, String rut) {
+    public TestPersona(String nombre, String apellido, String rut) {
 
-        this.nombre=nombre;
-        this.apellido=apellido;
-        this.rut=rut;
+       this.nombre=nombre;
+       this.apellido=apellido;
+       this.rut=rut;
     }
 
     public Long getId() {
