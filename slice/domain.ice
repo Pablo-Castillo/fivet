@@ -162,12 +162,12 @@ module model {
         /**
         *Peso: 30 Kg
         */
-        int peso;
+        double peso;
 
         /**
         *Altura: 60 cm
         */
-        int altura;
+        double altura;
 
         /**
         *Diagnostico: Problemas digestivos
