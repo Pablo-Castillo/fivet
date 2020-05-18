@@ -22,12 +22,12 @@
  * SOFTWARE.                                                                                      *
  **************************************************************************************************/
 
-package cl.ucn.disc.pdis.fivet.dao;import cl.ucn.disc.pdis.fivet.zeroice.model.*;
+package cl.ucn.disc.pdis.fivet.dao.Models;import cl.ucn.disc.pdis.fivet.zeroice.model.*;
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
 
 /**
- * The cl.ucn.disc.pdis.fivet.dao.TestPersona class
+ * The cl.ucn.disc.pdis.fivet.dao.Models.TestPersona class
  * The purpose of this clas is just to make test with the ORMLite DB
  *
  * @author Pablo-Castillo

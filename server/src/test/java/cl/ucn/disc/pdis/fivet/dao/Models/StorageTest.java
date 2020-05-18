@@ -22,7 +22,7 @@
  * SOFTWARE.                                                                                      *
  **************************************************************************************************/
 
-package cl.ucn.disc.pdis.fivet.dao;
+package cl.ucn.disc.pdis.fivet.dao.Models;
 
 import com.j256.ormlite.dao.Dao;
 import com.j256.ormlite.dao.DaoManager;
@@ -62,7 +62,7 @@ public class StorageTest {
         // Connection source: autoclose with the try/catch
         try (ConnectionSource connectionSource = new JdbcConnectionSource(databaseUrl)) {
 
-            // Create the table from the cl.ucn.disc.pdis.fivet.dao.TestPersona annotations
+            // Create the table from the cl.ucn.disc.pdis.fivet.dao.Models.TestPersona annotations
             TableUtils.createTableIfNotExists(connectionSource, TestPersona.class);
 
             // The dao of Persona
@@ -71,7 +71,7 @@ public class StorageTest {
             // New Persona
             TestPersona persona = new TestPersona("Andrea", "Contreras", "18124996k");
 
-            // Insert cl.ucn.disc.pdis.fivet.dao.TestPersona into the database
+            // Insert cl.ucn.disc.pdis.fivet.dao.Models.TestPersona into the database
             int tuples = daoPersona.create(persona);
             log.debug("Id: {}", persona.getId());
             //
