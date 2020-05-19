@@ -22,71 +22,102 @@
  * SOFTWARE.                                                                                      *
  **************************************************************************************************/
 
-package cl.ucn.disc.pdis.fivet.models;
+package cl.ucn.disc.pdis.fivet.repository;
 
-import com.j256.ormlite.field.DatabaseField;
-import com.j256.ormlite.table.DatabaseTable;
+import cl.ucn.disc.pdis.fivet.models.Persona;
+import com.j256.ormlite.dao.Dao;
+import com.j256.ormlite.dao.DaoManager;
+import com.j256.ormlite.support.ConnectionSource;
+import com.j256.ormlite.table.TableUtils;
 
-/**
- * The cl.ucn.disc.pdis.fivet.dao.Models.TestPersona class
- * The purpose of this clas is just to make test with the ORMLite DB
- *
- * @author Pablo-Castillo
- */
-@DatabaseTable(tableName = "persona")
-public final class Persona {
+import java.sql.SQLException;
+import java.util.List;
 
-    /**
-     * The id: Primary Key and autoincrement
-     */
-    @DatabaseField(generatedId = true)
-    private Long id;
+public class GenericCRUDImpl<T,K> implements GenericCRUD<T,K> {
 
     /**
-     * The Nombre
+     * Dao to manage the database connection
      */
-    @DatabaseField(canBeNull = false)
-    private String nombre;
+    private final Dao<T,K> dao;
 
     /**
-     * The Apellido
+     * Constructor of dao
+     * @param connectionSource
+     * @param theClass
+     * @throws SQLException
      */
-    @DatabaseField(canBeNull = false)
-    private String apellido;
+    public GenericCRUDImpl(ConnectionSource connectionSource, Class<T> theClass) throws SQLException {
+
+        TableUtils.createTableIfNotExists(connectionSource, theClass);
+        this.dao = DaoManager.createDao(connectionSource, theClass);
+    }
+
 
     /**
-     * The rut
+     *
+     * @param element to be created
+     * @return
+     * @throws SQLException
      */
-    @DatabaseField(canBeNull = false, index = true)
-    private String rut;
+    @Override
+    public boolean crear(T element) throws SQLException {
+
+        int objeto = dao.create(element);
+        return objeto == 1;
+    }
 
     /**
-     * Empty constructor; Default visibility + empty body.
+     *
+     * @param id to be deleted
+     * @return
+     * @throws SQLException
      */
-    Persona() {
-        // nothing here.
+    @Override
+    public boolean eliminar(K id) throws SQLException {
+
+        int objeto = dao.deleteById(id);
+        return objeto == 1;
+
     }
 
-    Persona(String nombre, String apellido, String rut) {
+    /**
+     *
+     * @param element to be updated
+     * @return
+     * @throws SQLException
+     */
+    @Override
+    public boolean actualizar(T element) throws SQLException {
 
-        this.nombre=nombre;
-        this.apellido=apellido;
-        this.rut=rut;
+        int objeto = dao.update(element);
+        return objeto == 1;
+
     }
 
-    public Long getId() {
-        return id;
+    /**
+     *
+     * @param id for searching
+     * @return
+     * @throws SQLException
+     */
+    @Override
+    public T buscar(K id) throws SQLException {
+
+        T objeto = dao.queryForId(id);
+        return objeto;
+
     }
 
-    public String getNombre() {
-        return nombre;
-    }
+    /**
+     *
+     * @return
+     * @throws SQLException
+     */
+    @Override
+    public List<T> obtenerTodo() throws SQLException {
 
-    public String getApellido() {
-        return apellido;
-    }
+        List<T> list = dao.queryForAll();
+        return list;
 
-    public String getRut() {
-        return rut;
     }
 }

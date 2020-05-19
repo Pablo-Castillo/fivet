@@ -22,71 +22,25 @@
  * SOFTWARE.                                                                                      *
  **************************************************************************************************/
 
-package cl.ucn.disc.pdis.fivet.models;
+package cl.ucn.disc.pdis.fivet.repository;
 
-import com.j256.ormlite.field.DatabaseField;
-import com.j256.ormlite.table.DatabaseTable;
+import cl.ucn.disc.pdis.fivet.models.Persona;
+import com.j256.ormlite.jdbc.JdbcConnectionSource;
+import com.j256.ormlite.support.ConnectionSource;
 
-/**
- * The cl.ucn.disc.pdis.fivet.dao.Models.TestPersona class
- * The purpose of this clas is just to make test with the ORMLite DB
- *
- * @author Pablo-Castillo
- */
-@DatabaseTable(tableName = "persona")
-public final class Persona {
+import java.sql.SQLException;
+
+public class Singleton {
 
     /**
-     * The id: Primary Key and autoincrement
+     * Singleton patron instance
      */
-    @DatabaseField(generatedId = true)
-    private Long id;
+    private static Singleton instancia;
 
-    /**
-     * The Nombre
-     */
-    @DatabaseField(canBeNull = false)
-    private String nombre;
-
-    /**
-     * The Apellido
-     */
-    @DatabaseField(canBeNull = false)
-    private String apellido;
-
-    /**
-     * The rut
-     */
-    @DatabaseField(canBeNull = false, index = true)
-    private String rut;
-
-    /**
-     * Empty constructor; Default visibility + empty body.
-     */
-    Persona() {
-        // nothing here.
-    }
-
-    Persona(String nombre, String apellido, String rut) {
-
-        this.nombre=nombre;
-        this.apellido=apellido;
-        this.rut=rut;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public String getApellido() {
-        return apellido;
-    }
-
-    public String getRut() {
-        return rut;
+    public static Singleton getInstancia() throws SQLException {
+        if (instancia == null) {
+            instancia = new Singleton();
+        }
+        return instancia;
     }
 }

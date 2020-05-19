@@ -22,71 +22,40 @@
  * SOFTWARE.                                                                                      *
  **************************************************************************************************/
 
-package cl.ucn.disc.pdis.fivet.models;
+package cl.ucn.disc.pdis.fivet.repository;
 
-import com.j256.ormlite.field.DatabaseField;
-import com.j256.ormlite.table.DatabaseTable;
+import java.sql.SQLException;
+import java.util.List;
 
-/**
- * The cl.ucn.disc.pdis.fivet.dao.Models.TestPersona class
- * The purpose of this clas is just to make test with the ORMLite DB
- *
- * @author Pablo-Castillo
- */
-@DatabaseTable(tableName = "persona")
-public final class Persona {
+public interface GenericCRUD<T,K> {
 
     /**
-     * The id: Primary Key and autoincrement
+     * Creates a registry in the database
+     * @param element to be created
      */
-    @DatabaseField(generatedId = true)
-    private Long id;
+    boolean crear (T element) throws SQLException;
 
     /**
-     * The Nombre
+     * Deletes a registry from database
+     * @param id to be deleted
      */
-    @DatabaseField(canBeNull = false)
-    private String nombre;
+    boolean eliminar(K id) throws SQLException;
 
     /**
-     * The Apellido
+     * Updates an existing T registry
+     * @param element to be updated
      */
-    @DatabaseField(canBeNull = false)
-    private String apellido;
+    boolean actualizar (T element) throws SQLException;
 
     /**
-     * The rut
+     * finds an especific registry in the database
+     * @param id for searching
      */
-    @DatabaseField(canBeNull = false, index = true)
-    private String rut;
+    T buscar(K id) throws SQLException;
 
     /**
-     * Empty constructor; Default visibility + empty body.
+     * Gets all the data in the table T
      */
-    Persona() {
-        // nothing here.
-    }
+    List<T> obtenerTodo() throws SQLException;
 
-    Persona(String nombre, String apellido, String rut) {
-
-        this.nombre=nombre;
-        this.apellido=apellido;
-        this.rut=rut;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public String getApellido() {
-        return apellido;
-    }
-
-    public String getRut() {
-        return rut;
-    }
 }
